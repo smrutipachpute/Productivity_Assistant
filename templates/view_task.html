@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Task
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="container-wrapper">
+
+        <h3 class="title-text">Your Task</h3>
+
+        <form action="/view_task">
+            <div class="item"><input class="input" type="text" placeholder="Title" value="Task Title" readonly></div>
+            <div class="item">
+                <textarea class="input" id="Description" name="Description" rows="4" cols="40" maxlength="150" placeholder="Description" readonly>
+                    wtv
+                </textarea>
+            </div>
+            <div class="item"><input class="input" placeholder="Deadline"  value="05-14-2024" readonly></div>
+
+            <div class="item submit">
+                <button><a href="{{ url_for('app.edit_task') }}">Edit</a></button> &emsp; 
+                <button type="submit" href="/delete_task">Delete</button> &emsp; 
+                <button type="submit" href="#" style="white-space: nowrap; width: 24%;">Mark Done</button>
+            </div>
+
+        </form>
+        
+    </div>
+    
+</div> 
+
+
+{% endblock %}

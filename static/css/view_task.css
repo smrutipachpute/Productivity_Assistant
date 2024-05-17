@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+* {
+  font-family: "Varela Round", sans-serif;
+  color: #3a2d2d;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  overflow: hidden;
+}
+
+.container-wrapper {
+  padding: 3em;
+  margin: 2em;
+  width: max-content;
+  height: max-content;
+  border-color: #000000;
+  border-radius: 30px;
+}
+
+.title-text {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 2%;
+}
+
+.container-wrapper label,
+button {
+  padding: 0.2em;
+}
+
+.submit {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.submit button {
+  padding: 0.5em 1em 0.5em 1em;
+  border-radius: 4.7em;
+  border: none;
+  width: 20%;
+  background-color: #ffffff;
+  font-size: 18px;
+}
+
+.submit button:hover {
+  /* background-color: #a9f1ff; */
+  cursor: pointer;
+  border: #000000;
+  /* box-shadow: #b5b6fb; */
+}
+
+form {
+  margin: 2em auto 2em auto;
+}
+
+textarea {
+    white-space: wrap;
+}
+
+.input{
+  padding: 20px;
+  border-radius: 30px;
+  border-color: #000;
+  background: transparent;
+  font-size: 20px;
+  margin: 5px;
+}
+
+/* .container h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.container h2 span {
+  padding: 0 10px;
+} */
+
+@media only screen and (max-width: 500px) {
+  .container-wrapper {
+    padding: 2em;
+    margin: 1em;
+  }
+
+  .title-text {
+    font-size: 1.5em;
+  }
+
+  .item {
+    padding: 0.1em;
+    text-align: center;
+  }
+
+  .container-wrapper label,
+  button {
+    padding: 0.1em;
+  }
+
+  .submit {
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+
+  .submit button {
+    padding: 0.5em 1em;
+    border-radius: 4.7em;
+    font-size: 14px;
+  }
+
+  form {
+    margin: 1em auto 1em auto;
+  }
+
+  .input {
+    padding: 1em;
+    border-radius: 15px;
+    border-color: #000;
+    font-size: 15px;
+  }
+
+  .container h2 span {
+    font-size: medium;
+  }
+}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block main %}
+    <table>
+        <caption>Things to be Done</caption>
+        <thead>
+            <tr>
+                <th>Created On</th>
+                <th>Title</th>
+                <th>Deadline</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>13/05/2024</td>
+                <td><a href="/view_task">Frontend</a></td>
+                <td>14/05/2024</td>
+                <td class="notdone">Not Done</td>
+            </tr>
+            
+        </tbody>
+    </table>
+{% endblock %}

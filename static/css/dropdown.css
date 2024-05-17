@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+.mydropdown {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 20px 60px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-item {    
+    padding: .3em;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dropdown-divide{
+  background-color: #f9f9f9;
+
+    padding-top: 20em  ;
+}

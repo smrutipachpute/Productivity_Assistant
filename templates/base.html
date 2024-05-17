@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/background.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/create_task.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/view_task.css') }}">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const dropdownToggle = document.getElementById("dropdownMenuButton");
+      const dropdownMenu = document.querySelector(".dropdown-menu");
+
+      dropdownToggle.addEventListener("click", function () {
+        dropdownMenu.classList.toggle("show");
+      });
+    });
+  </script>
+
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/planning.png') }}" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+
+
+    <div class="dropdown">
+        <svg stroke-width="1.5" fill="none" class="mydropdown" id="dropdownMenuButton">
+            <path d="M3 5H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            </path>
+            <path d="M3 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            </path>
+            <path d="M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            </path>
+        </svg>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/">Tasks</a>
+            <a class="dropdown-item" href="/create_task">Create Task</a>
+            <!-- <div class="dropdown-divide"></div> -->
+            <a class="dropdown-item" href="/changepw">Change Password</a>
+            <a class="dropdown-item" href="/login">Logout</a>
+        </div>
+    </div>
+    {% block main %}{% endblock %}
+  </div>
+
+</body>
+
+</html>

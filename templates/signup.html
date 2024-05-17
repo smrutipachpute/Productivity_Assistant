@@ -1,0 +1,35 @@
+{% extends 'base_login.html' %}
+
+{% block title %}
+    Signup
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="container-wrapper">
+
+            <h3 class="login-text"><i class="bi bi-person-circle ac-logo"></i>Register</h3>
+
+            <form method="post" action="/">
+                <div class="item"><input class="input" type="text" placeholder="Email id" name="email"></div>
+                <div class="item"><input class="input" type="password" placeholder="Password" name="password"> </div>
+                <div class="item"><input class="input" type="password" placeholder="Confirm Password" name="confirm_password"> </div>
+                
+                <div class="item submit"><button type="submit">Register</button></div>
+            </form>
+                        <!-- <h2><span>OR</span></h2>
+         
+            <div class="social-media">
+
+                <a href="#"><div class="icons8-google social-mediaImg"></div></a> 
+                <a href="#"><div class="icons8-facebook-circled social-mediaImg"></div></a> 
+                <a href="#"><div class="icons8-twitter social-mediaImg"></div></a> 
+  
+            </div> -->
+            <span class="ac">Already have an account? <a href="/login">Login</a></span>
+        </div>
+
+    </div>
+
+{% endblock %}
