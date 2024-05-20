@@ -193,9 +193,34 @@ def markdone(id):
     db.session.commit()
     return redirect('/')
 
-@blueprint.route('/changepw')
+@blueprint.route('/changepw', methods=["POST", "GET"])
 @login_required
 def changepw():
+    if request.method == "POST":
+        email = request.form.get('email')
+        password = request.form.get('password')
+        newpass = request.form.get('newpassword')
+        confirmation = request.form.get('confirmation')
+        
+        if not email or not password or not newpass or not confirmation:
+            flash("Please fill all fields!")
+            return redirect('/changepw')
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if not user or not (user.password == password):
+            flash("Invalid username or password")
+            return redirect("/changepw")
+
+        if newpass != confirmation:
+            flash("Passwords do not match")
+            return redirect("/changepw")      
+        
+        user.password = newpass
+        db.session.commit()
+
+        return redirect("/login")
+    
     return render_template('changepw.html')
 
 @blueprint.route('/logout')
