@@ -1,18 +1,17 @@
 from flask import Flask
 # , request, redirect, url_for
-from .routes import blueprint
+from .routes import blueprint, app
 from .database import init_app
+from flask_session import Session
 
-app = Flask(__name__,template_folder='../templates', static_folder='../static')
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 app.register_blueprint(blueprint)
 
-# Load configuration from config.py
-# with open('./config.py', mode="rb"):
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-# print("SQLALCHEMY_DATABASE_URI:", app.config['SQLALCHEMY_DATABASE_URI'])
 
 # Initialize SQLAlchemy
 init_app(app)
 
-# Add more routes for task management, authentication, etc.

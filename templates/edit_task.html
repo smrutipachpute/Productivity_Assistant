@@ -11,19 +11,19 @@ Create Task
 
         <h3 class="title-text">Your Task</h3>
 
-        <form action="/view_task">
-            <div class="item"><input class="input" type="text" placeholder="Title" value="Task Title" ></div>
+        <form action="/edit_task/{{task.id}}" method="POST">
+            <div class="item"><input class="input" type="text" value="{{ task.title }}" id="Task title" name="Task title"></div>
             <div class="item">
-                <textarea class="input" id="Description" name="Description" rows="4" cols="40" maxlength="150" placeholder="Description" >
-                    wtv
+                <textarea class="input" id="Description" name="Description" rows="4" cols="40" maxlength="150">
+                    {{ task.description }}
                 </textarea>
             </div>
-            <div class="item"><input class="input" placeholder="Deadline"  value="05-14-2024" ></div>
-
+            <div class="item"><input class="input" id="Deadline" name="Deadline" type="date" value="{{ task.deadline }}" ></div>
+            <div class="item"><input class="input" value="{{task.status}}" readonly></div>
             <div class="item submit">
-                <button><a href="{{ url_for('app.view_task') }}">View</a></button> &emsp; 
-                <button type="submit" href="/delete_task">Delete</button> &emsp; 
-                <button type="submit" href="#" style="white-space: nowrap; width: 24%;">Mark Done</button>
+                <button type="submit">Update</button> 
+                <button type="button" onclick="location.pathname='/delete_task/{{task.id}}'">Delete</button>
+                <button type="button" onclick="location.pathname='/markdone/{{task.id}}'">Change Status</button>
             </div>
 
         </form>

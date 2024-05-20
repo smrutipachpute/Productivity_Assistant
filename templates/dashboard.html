@@ -16,14 +16,14 @@ Dashboard
             </tr>
         </thead>
         <tbody>
-            <tr>
-
-                <td>13/05/2024</td>
-                <td><a href="/view_task">Frontend</a></td>
-                <td>14/05/2024</td>
-                <td class="notdone">Not Done</td>
-            </tr>
-            
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.created_on }}</td>
+                    <td><a href="/view_task/{{task.id}}">{{ task.title }}</a></td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.status }}</td>
+                </tr>
+            {% endfor %}            
         </tbody>
     </table>
 {% endblock %}

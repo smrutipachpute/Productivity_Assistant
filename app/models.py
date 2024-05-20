@@ -1,5 +1,5 @@
-from flask import Flask
-from datetime import datetime
+# from flask import Flask
+from datetime import date
 from .database import db
 
 class User(db.Model):
@@ -10,9 +10,9 @@ class User(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created_on = db.Column(db.DateTime, default=datetime.utcnow)
+    created_on = db.Column(db.Date, default=date.today())
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text)
-    due_date = db.Column(db.DateTime)
+    deadline = db.Column(db.Date)
     status = db.Column(db.String(20), default='Not Done')
 

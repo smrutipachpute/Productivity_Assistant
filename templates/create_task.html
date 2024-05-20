@@ -12,12 +12,12 @@ Create Task
         <h3 class="title-text">Create Task</h3>
 
         <form method="post" action="/create_task">
-            <div class="item"><input class="input" type="text" placeholder="Title"></div>
+            <div class="item"><input class="input" type="text" placeholder="Title" name="Title"></div>
             <div class="item">
                 <textarea class="input" id="Description" name="Description" rows="4" cols="40" maxlength="150" placeholder="Description">
                 </textarea>
             </div>
-            <div class="item"><input class="input" placeholder="Deadline" type="date" ></div>
+            <div class="item"><input class="input" placeholder="Deadline" type="date" name="Deadline"></div>
             <div class="item submit"><button type="submit">Create</button></div>
         </form>
         
