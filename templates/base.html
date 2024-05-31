@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/dropdown.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/create_task.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/view_task.css') }}">
-
+  
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const dropdownToggle = document.getElementById("dropdownMenuButton");
@@ -28,31 +28,27 @@
 </head>
 
 <body>
-
+  
   <div class="container">
-
-
-
     <div class="dropdown">
-        <svg stroke-width="1.5" fill="none" class="mydropdown" id="dropdownMenuButton">
-            <path d="M3 5H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            </path>
-            <path d="M3 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            </path>
-            <path d="M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            </path>
-        </svg>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/">Tasks</a>
-            <a class="dropdown-item" href="/create_task">Create Task</a>
-            <!-- <div class="dropdown-divide"></div> -->
-            <a class="dropdown-item" href="/changepw">Change Password</a>
-            <a class="dropdown-item" href="/logout">Logout</a>
-        </div>
+      <svg stroke-width="1.5" fill="none" class="mydropdown" id="dropdownMenuButton">
+        <path d="M3 5H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+        <path d="M3 12H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+        <path d="M3 19H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+      </svg>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/">Tasks</a>
+        <a class="dropdown-item" href="/create_task">Create Task</a>
+        <a class="dropdown-item" href="/completion_rates">Productivity Scale</a>
+        <a class="dropdown-item" href="/changepw">Change Password</a>
+        <a class="dropdown-item" href="/logout">Logout</a>
+      </div>
     </div>
     {% block main %}{% endblock %}
   </div>
-
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+{% extends 'completion_base.html' %}
+
+{% block title %}
+Productivity Scale
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="container-wrapper">
+        <h3 class="login-text">Monthly Productivity Rate</h3>
+        <h4 class="login-text">for {{ selected_month }} - {{ selected_year }}</h4>
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+    </div>
+</div>
+{% endblock %}

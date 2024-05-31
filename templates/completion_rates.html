@@ -1,0 +1,45 @@
+{% extends 'completion_base.html' %}
+
+{% block title %}
+Productivity Scale
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="container-wrapper">
+        <h3 class="login-text">Monthly Productivity Rate</h3>
+        <br>
+        <form method="POST" action="/completion_rates">
+            <label for="selected_month">Select Month:</label>
+            <div class="item">
+                <select id="selected_month" name="selected_month" class="input">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div> 
+
+            <label for="selected_year">Select Year:</label>
+            <div class="item">
+                <select id="selected_year" name="selected_year" class="input">
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <!-- Add options for relevant years -->
+                </select>
+            </div>
+            <div class="item submit">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

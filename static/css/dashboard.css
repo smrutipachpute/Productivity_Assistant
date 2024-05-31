@@ -12,6 +12,7 @@ table {
     border-collapse: collapse;
     margin: 0;
     padding: 0;
+    margin-bottom: 2%;
     width: 80%;
     align-items: center;
     table-layout: fixed;
@@ -78,10 +79,6 @@ table {
     
     table th::before,
     table td::before {
-      /*
-      * aria-label has no advantage, it won't be read inside a table
-      content: attr(aria-label);
-      */
       content: attr(data-label);
       float: left;
       font-weight: bold;
@@ -98,10 +95,3 @@ table {
       border-bottom: 0;
     }
   }
-
-  .done {
-    background-color: #00FF00;
-  }
-   .notdone {
-    background-color: #FF0000;
-   }

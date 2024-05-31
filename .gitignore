@@ -26,6 +26,8 @@ share/python-wheels/
 *.egg
 MANIFEST
 flask_session/
+Productivity Assistant Final take.mp4
+Productivity Assistant.jpg
 
 # Virtual environments
 env/

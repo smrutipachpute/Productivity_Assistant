@@ -27,28 +27,22 @@ def login():
         password = request.form.get('password')
         
         if not email:
-            flash("Please provide username")
-            return redirect("/login")
+            error = "Please provide username"
+            return render_template("login.html", error=error)
         elif not password:
-            flash("Please provide password")
-            return redirect("/login")
+            error = "Please provide password"
+            return render_template("login.html", error=error)
         
         user = User.query.filter_by(email=email).first()
-        # print(user.password)
-        # hash=generate_password_hash(password)
-        # print(hash)
-        # print(user.password == password)
-        if not user or not (user.password == password):
-            flash("Invalid username or password")
-            return redirect("/login")
+        if not user or not check_password_hash(user.password, password):
+            error = "Invalid username or password"
+            return render_template("login.html", error=error)
         
         session["user_id"] = user.id
-        # print(session["user_id"])
 
         return redirect("/")
     
-    else:
-        return render_template("login.html")
+    return render_template("login.html")
 
 @blueprint.route('/signup', methods=['GET','POST'])
 def signup():
@@ -57,29 +51,27 @@ def signup():
         password = request.form.get('password')
         confirmation = request.form.get('confirm_password')
         if not emailid:
-            print('Please provide an email')
-            return redirect('/signup')
+            error = 'Please provide an email'
+            return render_template("signup.html", error=error)
         elif not password or not confirmation:
-            print('Please provide password')
-            return redirect('/signup')
+            error = 'Please provide password'
+            return render_template("signup.html", error=error)
         elif confirmation:
             if password != confirmation:
-                print('Passwords do not match')
-                return redirect('/signup')
+                error = 'Passwords do not match'
+                return render_template("signup.html", error=error)
         
         existing_user = User.query.filter_by(email=emailid).first()
         if existing_user:
-            print('Username already exists!')
-            return redirect('/signup')
-        
-        new_user = User(email=emailid, password=password)
+            error = 'Username already exists!'
+            return render_template("signup.html", error=error)
+        hash = generate_password_hash(password)
+        new_user = User(email=emailid, password=hash)
         db.session.add(new_user)
         db.session.commit()
-        print('Account created successfully! Please log in.')
+        flash('Account created successfully! Please log in.')
         return redirect('/login')
     
-    # else:
-    #     return render_template("signup.html")
     return render_template('signup.html')
 
 @blueprint.route('/')
@@ -116,11 +108,10 @@ def create_task():
             flash('Title is required')
             return redirect('/create_task')
 
-        if deadline:
-            deadline = datetime.strptime(deadline, '%Y-%m-%d').date()
-        else:
-            flash('Deadline is required')
+        if not deadline:
+            flash("Deadline is required")
             return redirect('/create_task')
+        deadline = datetime.strptime(deadline, '%Y-%m-%d').date()
 
         new_task = Task(
             created_on=date.today(),
@@ -134,7 +125,6 @@ def create_task():
         db.session.add(new_task)
         db.session.commit()
 
-        flash('Task created successfully!')
         return redirect('/')
 
     return render_template('create_task.html')
@@ -155,7 +145,7 @@ def edit_task(id):
             try:
                 task.deadline = datetime.strptime(deadline, '%Y-%m-%d').date()
             except ValueError:
-                # flash('Invalid date format. Please use YYYY-MM-DD.')
+                flash('Invalid date format. Please use YYYY-MM-DD.')
                 return redirect(url_for('edit_task', id=task.id))
 
         db.session.commit()
@@ -178,9 +168,9 @@ def delete_task(id):
     try:
         db.session.delete(task_to_del)
         db.session.commit()
-        return redirect('/')
     except:
-        return 'There was a problem deleting that task'
+        flash('There was a problem deleting that task')
+    return redirect('/')
     
 @blueprint.route('/markdone/<int:id>')
 @login_required
@@ -208,7 +198,7 @@ def changepw():
         
         user = User.query.filter_by(email=email).first()
         
-        if not user or not (user.password == password):
+        if not user or not check_password_hash(user.password, password):
             flash("Invalid username or password")
             return redirect("/changepw")
 
@@ -216,7 +206,7 @@ def changepw():
             flash("Passwords do not match")
             return redirect("/changepw")      
         
-        user.password = newpass
+        user.password = generate_password_hash(newpass)
         db.session.commit()
 
         return redirect("/login")
@@ -231,3 +221,19 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
+@blueprint.route('/completion_rates', methods=['GET', 'POST'])
+def completion_rates():
+    if request.method == 'POST':
+        selected_month = request.form.get('selected_month')
+        selected_year = request.form.get('selected_year')
+        selected_date = datetime.strptime(f'{selected_year}-{selected_month}', '%Y-%m')
+        start_date = selected_date.replace(day=1)
+        end_date = selected_date.replace(day=1, month=int(selected_month) % 12 + 1, year=int(selected_year) if int(selected_month) % 12 != 0 else int(selected_year) + 1)
+        
+        completed_tasks = Task.query.filter(Task.deadline >= start_date, Task.deadline < end_date, Task.status == 'Done').count()
+        incomplete_tasks = Task.query.filter(Task.deadline >= start_date, Task.deadline < end_date, Task.status == 'Not Done').count()
+
+        return render_template('pie_chart.html', completed_tasks=completed_tasks, incomplete_tasks=incomplete_tasks, selected_month=selected_month, selected_year=selected_year)
+
+    return render_template('completion_rates.html')

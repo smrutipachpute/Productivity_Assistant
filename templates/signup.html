@@ -18,16 +18,10 @@
                 
                 <div class="item submit"><button type="submit">Register</button></div>
             </form>
-                        <!-- <h2><span>OR</span></h2>
-         
-            <div class="social-media">
-
-                <a href="#"><div class="icons8-google social-mediaImg"></div></a> 
-                <a href="#"><div class="icons8-facebook-circled social-mediaImg"></div></a> 
-                <a href="#"><div class="icons8-twitter social-mediaImg"></div></a> 
-  
-            </div> -->
             <span class="ac">Already have an account? <a href="/login">Login</a></span>
+            {% if error %}
+                <p class=error style="align-items: center; color: crimson;"> {{ error }} </p>
+            {% endif %}
         </div>
 
     </div>
